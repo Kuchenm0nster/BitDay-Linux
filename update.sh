@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DIR=`pwd`
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 files=(
   11-Mid-Night.png
@@ -21,10 +21,10 @@ files=(
 timing=(11 10 9 8 7 6 5 4 3 2 1 0)
 
 hour=`date +%H`
-hour=$(echo $hour | sed 's/0//')
+hour=$(echo $hour | sed 's/^0//')
 
 for i in "${timing[@]}"; do # Loop backwards through the wallpapers
-  if (( $hour <= $(($i*2)) )); then
+  if (( $hour >= $(($i*2)) )); then
     feh --bg-fill $DIR/*/${files[i]}
     echo "Wallpaper set to ${files[i]}"
     exit
