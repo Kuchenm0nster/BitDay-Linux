@@ -1,12 +1,6 @@
 #!/bin/bash
 
-# Original script by http://www.reddit.com/u/javajames64
-# Updates by http://www.reddit.com/u/OhMrBigshot
-
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-
-sessionfile=`find "${HOME}/.dbus/session-bus/" -type f`
-export `grep "DBUS_SESSION_BUS_ADDRESS" "${sessionfile}" | sed '/^#/d'`
+DIR=`pwd`
 
 files=(
   11-Mid-Night.png
@@ -24,32 +18,15 @@ files=(
 )
 
 #Timings for the backgrounds in order. Your life may vary.
-timing=(0 2 4 6 8 10 13 16 18 20 21)
+timing=(11 10 9 8 7 6 5 4 3 2 1 0)
 
 hour=`date +%H`
-hour=$(echo $hour | sed 's/^0*//')
+hour=$(echo $hour | sed 's/0//')
 
-
-# Different desktop environment implementations
-case $XDG_CURRENT_DESKTOP in
-	Mint|Mate) setcmd="gsettings set org.mate.background picture-uri";;
-	Cinnamon) setcmd="gsettings set org.cinnamon.background picture-uri";;
-	*) setcmd="gsettings set org.gnome.desktop.background picture-uri";; # GNOME/Unity, default
-esac
-if [[ -z $XDG_CURRENT_DESKTOP ]]; then # Fallback for i3
-	case $DESKTOP_SESSION in
-		i3) setcmd="feh --bg-fill"
-	esac
-fi
-
-for i in $timing; do # Loop backwards through the wallpapers
-    if (( $hour >= $i )); then
-        $setcmd file://$DIR/${files[i]}
-        echo "Wallpaper set to ${files[i]}"
-        exit
-    fi
+for i in "${timing[@]}"; do # Loop backwards through the wallpapers
+  if (( $hour <= $(($i*2)) )); then
+    feh --bg-fill $DIR/*/${files[i]}
+    echo "Wallpaper set to ${files[i]}"
+    exit
+  fi
 done
-
-# Fallback at last wallpaper if time is not relevant
-$setcmd file://$DIR/${files[7]}
-echo "Wallpaper set to ${files[7]}"

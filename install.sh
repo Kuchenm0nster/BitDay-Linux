@@ -50,7 +50,7 @@ if [[ -z $file ]]; then
 fi
 
 # Actual download link for tar
-download="https://github.com/chenasraf/BitDay-Linux/raw/master/tars/BitDay-$file.tar.gz"
+download="https://github.com/kuchenm0nster/BitDay-Linux/raw/master/tars/BitDay-$file.tar.gz"
 
 echo $sep
 echo "* Downloading scripts & wallpapers, please wait... [2/5]"
@@ -64,8 +64,8 @@ else
 fi
 
 # Download update & uninstall scripts
-wget "https://github.com/chenasraf/BitDay-Linux/raw/master/update.sh"
-wget "https://github.com/chenasraf/BitDay-Linux/raw/master/uninstall.sh"
+wget "https://github.com/kuchenm0nster/BitDay-Linux/raw/master/update.sh"
+wget "https://github.com/kuchenm0nster/BitDay-Linux/raw/master/uninstall.sh"
 
 
 echo $sep

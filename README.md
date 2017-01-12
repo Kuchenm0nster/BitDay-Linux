@@ -9,22 +9,23 @@ Requirements are usually built into most Linux distributions:
 
 * **wget** to download the zip
 * **tar** to extract the downloaded zip
-
+* **cronie** to execute the script every hour
+* **feh** to set the background
 
 ## How to use?
 
 Just make a new directory where you want the wallpapers to be placed and installs, and run the following command:
 
-    wget https://github.com/chenasraf/BitDay-Linux/raw/master/install.sh
-    
+    wget https://github.com/Kuchenm0nster/BitDay-Linux/raw/master/install.sh
+
 Then just make sure you have execute permissions on the install.sh file:
 
     chmod +x install.sh
-    
+
 And run it:
 
     ./install.sh
-    
+
 That's it! You'll be prompted for everything you need, and the script will download any remaining files that are missing. Enjoy!
 
 ## How can I help?
