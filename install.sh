@@ -88,7 +88,7 @@ echo
 read -p "Create a cron job every hour? [y/n] " yn
 case $yn in
 	[Yy]*)
-		line="0 * * * * ${pwd}/update.sh"
+		line="0 * * * * export DISPLAY=:0; ${pwd}/update.sh"
 		if ! crontab -l | grep -Fxq "$line"; then
 			(crontab -l ; echo "$line") | crontab -
 		else
@@ -101,7 +101,7 @@ echo
 read -p "Create a cron job after each reboot? [y/n] " yn
 case $yn in
 	[Yy]*)
-		line="@reboot ${pwd}/update.sh"
+		line="@reboot export DISPLAY=:0; ${pwd}/update.sh"
 		if ! crontab -l | grep -Fxq "$line"; then
 			(crontab -l ; echo "$line") | crontab -
 		else
